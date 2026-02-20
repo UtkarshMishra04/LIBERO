@@ -118,6 +118,9 @@ class ControlEnv:
     def get_sim_state(self):
         return self.env.sim.get_state().flatten()
 
+    def get_observation(self):
+        return self.env._get_observations()
+
     def _post_process(self):
         return self.env._post_process()
 
