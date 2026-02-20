@@ -11,6 +11,20 @@ libero_task_map = {
         "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate",
         "pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate",
     ],
+
+    "libero_spatial_ood": [
+        "put_the_butter_on_the_plate",
+        "put_the_chocolate_pudding_on_the_plate",
+        "put_the_milk_on_the_plate",
+        "put_the_orange_juice_on_the_plate",
+        "put_the_bowl_on_cookie_box_on_the_stove",
+        "put_the_bowl_on_cookie_box_on_the_cabinet",
+        "put_the_bowl_next_to_the_plate_on_the_cabinet",
+        "put_the_bowl_next_to_the_plate_on_the_stove", # near success
+        "put_the_bowl_at_table_center_on_the_cabinet",
+        "put_the_bowl_at_table_center_on_the_stove",
+    ],
+
     "libero_object": [
         "pick_up_the_alphabet_soup_and_place_it_in_the_basket",
         "pick_up_the_cream_cheese_and_place_it_in_the_basket",
@@ -23,6 +37,20 @@ libero_task_map = {
         "pick_up_the_chocolate_pudding_and_place_it_in_the_basket",
         "pick_up_the_orange_juice_and_place_it_in_the_basket",
     ],
+
+    "libero_object_ood": [
+        "pick_up_the_alphabet_soup_and_place_it_in_the_basket",
+        "pick_up_the_cream_cheese_and_place_it_in_the_basket",
+        "pick_up_the_salad_dressing_and_place_it_in_the_basket",
+        "pick_up_the_bbq_sauce_and_place_it_in_the_basket",
+        "pick_up_the_ketchup_and_place_it_in_the_basket",
+        "pick_up_the_tomato_sauce_and_place_it_in_the_basket",
+        "pick_up_the_butter_and_place_it_in_the_basket",
+        "pick_up_the_milk_and_place_it_in_the_basket",
+        "pick_up_the_chocolate_pudding_and_place_it_in_the_basket",
+        "pick_up_the_orange_juice_and_place_it_in_the_basket",
+    ],
+
     "libero_goal": [
         "open_the_middle_drawer_of_the_cabinet",
         "put_the_bowl_on_the_stove",
@@ -35,6 +63,20 @@ libero_task_map = {
         "put_the_bowl_on_the_plate",
         "put_the_wine_bottle_on_the_rack",
     ],
+
+    "libero_goal_ood": [
+        "put_the_cream_cheese_in_the_basket",
+        "put_the_orange_juice_on_the_stove",
+        "put_the_bbq_source_on_the_plate",
+        "put_the_tomato_sauce_on_top_of_the_cabinet",
+        "put_the_wine_bottle_on_the_stove",
+        "put_the_wine_bottle_on_the_plate",
+        "put_the_wine_bottle_in_the_bowl",
+        "put_the_cream_cheese_on_the_plate",
+        "put_the_cream_cheese_on_the_stove",
+        "put_the_cream_cheese_on_top_of_the_cabinet",
+    ],
+
     "libero_10": [
         "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket",
         "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket",

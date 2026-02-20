@@ -1,10 +1,8 @@
 import abc
 import os
-import glob
-import random
-import torch
+from typing import NamedTuple
 
-from typing import List, NamedTuple, Type
+import torch
 from libero.libero import get_libero_path
 from libero.libero.benchmark.libero_suite_task_map import libero_task_map
 
@@ -44,9 +42,9 @@ class Task(NamedTuple):
 def grab_language_from_filename(x):
     if x[0].isupper():  # LIBERO-100
         if "SCENE10" in x:
-            language = " ".join(x[x.find("SCENE") + 8 :].split("_"))
+            language = " ".join(x[x.find("SCENE") + 8:].split("_"))
         else:
-            language = " ".join(x[x.find("SCENE") + 7 :].split("_"))
+            language = " ".join(x[x.find("SCENE") + 7:].split("_"))
     else:
         language = " ".join(x.split("_"))
     en = language.find(".bddl")
@@ -55,8 +53,11 @@ def grab_language_from_filename(x):
 
 libero_suites = [
     "libero_spatial",
+    "libero_spatial_ood",
     "libero_object",
+    "libero_object_ood",
     "libero_goal",
+    "libero_goal_ood",
     "libero_90",
     "libero_10",
 ]
@@ -78,7 +79,6 @@ for libero_suite in libero_suites:
 
         # print(language, "\n", f"{task}.bddl", "\n")
         # print("")
-
 
 task_orders = [
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -143,7 +143,7 @@ class Benchmark(abc.ABC):
 
     def get_task_demonstration(self, i):
         assert (
-            0 <= i and i < self.n_tasks
+                0 <= i and i < self.n_tasks
         ), f"[error] task number {i} is outer of range {self.n_tasks}"
         # this path is relative to the datasets folder
         demo_path = f"{self.tasks[i].problem_folder}/{self.tasks[i].name}_demo.hdf5"
@@ -161,7 +161,7 @@ class Benchmark(abc.ABC):
             self.tasks[i].problem_folder,
             self.tasks[i].init_states_file,
         )
-        init_states = torch.load(init_states_path)
+        init_states = torch.load(init_states_path, weights_only=False)
         return init_states
 
     def set_task_embs(self, task_embs):
@@ -185,6 +185,14 @@ class LIBERO_OBJECT(Benchmark):
 
 
 @register_benchmark
+class LIBERO_OBJECT_OOD(Benchmark):
+    def __init__(self, task_order_index=0):
+        super().__init__(task_order_index=task_order_index)
+        self.name = "libero_object_ood"
+        self._make_benchmark()
+
+
+@register_benchmark
 class LIBERO_GOAL(Benchmark):
     def __init__(self, task_order_index=0):
         super().__init__(task_order_index=task_order_index)
@@ -193,11 +201,37 @@ class LIBERO_GOAL(Benchmark):
 
 
 @register_benchmark
+class LIBERO_GOAL_OOD(Benchmark):
+    def __init__(self, task_order_index=0):
+        super().__init__(task_order_index=task_order_index)
+        self.name = "libero_goal_ood"
+        self._make_benchmark()
+
+    def _make_benchmark(self):
+        tasks = list(task_maps[self.name].values())
+        self.tasks = tasks
+        self.n_tasks = len(self.tasks)
+
+
+@register_benchmark
+class LIBERO_SPATIAL_OOD(Benchmark):
+    def __init__(self, task_order_index=0):
+        super().__init__(task_order_index=task_order_index)
+        self.name = "libero_spatial_ood"
+        self._make_benchmark()
+
+    def _make_benchmark(self):
+        tasks = list(task_maps[self.name].values())
+        self.tasks = tasks
+        self.n_tasks = len(self.tasks)
+
+
+@register_benchmark
 class LIBERO_90(Benchmark):
     def __init__(self, task_order_index=0):
         super().__init__(task_order_index=task_order_index)
         assert (
-            task_order_index == 0
+                task_order_index == 0
         ), "[error] currently only support task order for 10-task suites"
         self.name = "libero_90"
         self._make_benchmark()
