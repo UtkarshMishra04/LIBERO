@@ -90,6 +90,9 @@
       (top_region
           (:target wine_rack_1)
       )
+      (cook_region
+          (:target flat_stove_1)
+      )
     )
 
   (:fixtures

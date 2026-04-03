@@ -99,6 +99,9 @@
       (base_region
           (:target flat_stove_1)
       )
+      (cook_region
+          (:target flat_stove_1)
+      )
     )
 
   (:fixtures
